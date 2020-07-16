@@ -1,0 +1,28 @@
+// $black-bis: #000000;
+//@import "bulma/sass/utilities/_all.sass";
+@import "~/assets/scss/_variables.scss";
+
+@font-face {
+	font-family: "elianto";
+	src: url("../font/Elianto-Regular.ttf");
+}
+
+@font-face {
+	font-family: "exan";
+	src: url("../font/Exan-Regular.ttf");
+}
+
+.font-elianto {
+	font-family: elianto !important;
+	text-shadow: 2px 2px 6px $shadow-color;
+}
+
+.font-exan {
+	font-family: exan !important;
+	text-shadow: 2px 2px 6px $shadow-color;
+}
+
+.v-application {
+	font-family: elianto !important;
+	// text-shadow: 1px 1px 1px $shadow-color;
+}
