@@ -13,6 +13,7 @@ module.exports = {
 	metadata: {
 		author: "Nicholas Lee",
 		logo: "NIC",
+		pathPrefix: 'my-blog',
 	},
 
 	plugins: [

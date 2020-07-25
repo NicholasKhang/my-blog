@@ -15,6 +15,7 @@
 		"@gridsome/transformer-remark": "^0.6.1",
 		"gridsome": "^0.7.19",
 		"gridsome-plugin-remark-prismjs-all": "^0.3.5",
+		"vue-disqus": "^4.0.1",
 		"vue-social-sharing": "^3.0.0-beta.11",
 		"vuetify": "^2.3.4"
 	},

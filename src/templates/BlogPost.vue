@@ -4,15 +4,6 @@
 			<header class="text-center">
 				<h1>{{ $page.post.title }}</h1>
 				<p class="post-date">Published on {{ $page.post.date }}</p>
-				<ShareNetwork
-					network="facebook"
-					:url="`https://nicholaskhang.github.io/my-blog/${$page.post.path}`"
-					:title="$page.post.title"
-					:description="$page.post.description"
-					quote="The hot reload is so fast it\'s near instant. - Evan You"
-				>
-					Share on Facebook
-				</ShareNetwork>
 				<g-link
 					:href="tag.path"
 					v-for="tag in $page.post.tags"
@@ -22,13 +13,27 @@
 						{{ "#" + tag.id }}
 					</v-chip>
 				</g-link>
+				<br />
+				<ShareNetwork
+					network="facebook"
+					:url="`https://nicholaskhang.github.io/my-blog/${$page.post.path}`"
+					:title="$page.post.title"
+					:description="$page.post.description"
+				>
+					<v-tooltip bottom>
+      					<template v-slot:activator="{ on, attrs }">
+							<v-icon v-bind="attrs" v-on="on">mdi-facebook</v-icon>
+      					</template>
+						<span>Share on Facebook</span>
+					</v-tooltip>
+				</ShareNetwork>
 			</header>
 
 			<main class="content" v-html="$page.post.content"></main>
 
 			<footer class="mt-12">
 				<v-row>
-					<v-col class="col-12 col-md-6">
+					<v-col class="col-12 col-md-7">
 						<v-card>
 							<v-list-item>
 								<v-list-item-avatar size="64px">
@@ -53,6 +58,8 @@
 					</v-col>
 				</v-row>
 			</footer>
+			<br />
+			<Disqus shortname="nicholas-lee-blog" :identifier="$page.post.title" />
 		</article>
 	</Layout>
 </template>
@@ -60,8 +67,36 @@
 <script>
 export default {
 	metaInfo() {
+		let slug = this.$page.post.path.substring(5, this.$page.post.path.length - 1)
 		return {
 			title: this.$page.post.title,
+			meta: [
+				{
+					property: "og:url", 
+					name: "og:url", 
+					content: this.$static.metadata.siteUrl + this.$static.metadata.pathPrefix + this.$page.post.path
+				},
+				{
+					property: "og:type",
+					name: "og:type",
+					content: "blog"
+				},
+				{
+					property: "og:title",
+					name: "og:title",
+					content: this.$page.post.title
+				},
+				{
+					property: "og:description",
+					name: "og:description",
+					content: this.$page.post.description
+				},
+				{
+					property: "og:image",
+					name: "og:image",
+					content: this.$static.metadata.siteUrl + this.$static.metadata.pathPrefix + "/images/share" + slug + ".png"
+				}
+			]
 		};
 	},
 };
@@ -167,6 +202,8 @@ header {
 query {
 	metadata {
 		author
+		siteUrl
+		pathPrefix
 	}
 }
 </static-query>
@@ -176,12 +213,14 @@ query Post ($path: String!) {
 	post: blogPost (path: $path) {
 		id
 		title
+		path
 		date (format: "MMMM D, YYYY h:mma")
 		last_update (format: "MMMM D, YYYY h:mma")
 		tags {
 			id
 			path
 		}
+		description
 		content
 	}
 }

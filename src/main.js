@@ -4,6 +4,9 @@ import 'vuetify/dist/vuetify.min.css'
 // import colors from 'vuetify/es5/util/colors'
 import theme_colors from '~/util/theme_colors'
 
+// Disqus comment
+import VueDisqus from 'vue-disqus'
+
 // Syntax highlighter for markdown code blocks - prismjs
 // import 'prismjs/themes/prism.css'
 // import 'prismjs/themes/prism-coy.css'
@@ -56,6 +59,9 @@ export default function (Vue, { router, head, isClient, appOptions }) {
 	Vue.use(Vuetify)
 	appOptions.vuetify = new Vuetify(opt);
 	Vue.use(VueSocialSharing);
+
+	// Disqus
+	Vue.use(VueDisqus);
 
 	// Set default layout as a global component
 	Vue.component('Layout', DefaultLayout)

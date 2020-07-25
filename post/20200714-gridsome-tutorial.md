@@ -31,7 +31,7 @@ As mentioned in the earlier post, this blog is developed using **Gridsome** fram
 -   [Plugin](#plugin)
 -   [Configuration](#configuration)
 -   [Create the Page Layout](#creating-the-page-layout)
--   [Create blog post](#create-blog-post)
+-   [Create blog posts](#create-blog-posts)
 
 ## Prerequisites
 

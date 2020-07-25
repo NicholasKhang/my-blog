@@ -31,14 +31,52 @@
 import BlogPostList from "~/components/BlogPostList.vue";
 
 export default {
-	metaInfo: {
-		title: "Nicholas Lee",
+	metaInfo() {
+		return {
+			title: "Nicholas Lee",
+			meta: [
+				{
+					property: "og:url", 
+					name: "og:url", 
+					content: this.$static.metadata.siteUrl + this.$static.metadata.pathPrefix
+				},
+				{
+					property: "og:type",
+					name: "og:type",
+					content: "blog"
+				},
+				{
+					property: "og:title",
+					name: "og:title",
+					content: "Nicholas Lee | My Blog"
+				},
+				{
+					property: "og:description",
+					name: "og:description",
+					content: "Nicholas Lee | Web Developer Blog"
+				},
+				{
+					property: "og:image",
+					name: "og:image",
+					content: this.$static.metadata.siteUrl + this.$static.metadata.pathPrefix + "/images/share/home.png"
+				}
+			]
+		}
 	},
 	components: {
 		BlogPostList,
 	},
 };
 </script>
+
+<static-query>
+query {
+	metadata {
+		siteUrl
+		pathPrefix
+	}
+}
+</static-query>
 
 <page-query>
 query {
