@@ -1332,9 +1332,7 @@
 <p><code class="language-text">&lt;XXXXXX_XXXXXX&gt;</code> refers to the UTC datetime at which the migration being created.</p>
 </blockquote>
 <p>Open the migration file with your editor, you will find the following code:</p>
-<div class="gridsome-highlight" data-language="php"><pre class="language-php"><code class="language-php"><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
-
-<span class="token keyword">use</span> <span class="token package">yii<span class="token punctuation">\</span>db<span class="token punctuation">\</span>Migration</span><span class="token punctuation">;</span>
+<div class="gridsome-highlight" data-language="php"><pre class="language-php"><code class="language-php"><span class="token keyword">use</span> <span class="token package">yii<span class="token punctuation">\</span>db<span class="token punctuation">\</span>Migration</span><span class="token punctuation">;</span>
 
 <span class="token comment">/**
  * Handles the creation of table `users`.
@@ -1358,7 +1356,7 @@
     <span class="token punctuation">{</span>
         <span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">dropTable</span><span class="token punctuation">(</span><span class="token single-quoted-string string">'users'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></span></code></pre></div>
+<span class="token punctuation">}</span></code></pre></div>
 <p>You can see there are two functions in the migration file.</p>
 <ul>
 <li>function <code class="language-text">up()</code> - The <code class="language-text">up()</code> function is the codes to be executed when we run the migration in the command line with the <code class="language-text">$ yii migrate</code> command.</li>
@@ -1587,20 +1585,16 @@
 <div class="gridsome-highlight" data-language="php"><pre class="language-php"><code class="language-php"><span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">execute</span><span class="token punctuation">(</span><span class="token single-quoted-string string">'CREATE TABLE ...'</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></div>
 <h3 id="change-database"><a href="#change-database" aria-hidden="true"><span class="icon icon-link"></span></a>Change Database</h3>
 <p>In <code class="language-text">config</code> folder, create new database connection <code class="language-text">db2_name.php</code>:</p>
-<div class="gridsome-highlight" data-language="php"><pre class="language-php"><code class="language-php"><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
-
-<span class="token keyword">return</span> <span class="token punctuation">[</span>
+<div class="gridsome-highlight" data-language="php"><pre class="language-php"><code class="language-php"><span class="token keyword">return</span> <span class="token punctuation">[</span>
     <span class="token single-quoted-string string">'class'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token single-quoted-string string">'yii\db\Connection'</span><span class="token punctuation">,</span>
     <span class="token single-quoted-string string">'dsn'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token single-quoted-string string">'mysql:host=localhost;dbname=db2_name'</span><span class="token punctuation">,</span>
     <span class="token single-quoted-string string">'username'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token single-quoted-string string">'root'</span><span class="token punctuation">,</span>
     <span class="token single-quoted-string string">'password'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token single-quoted-string string">''</span><span class="token punctuation">,</span>
     <span class="token single-quoted-string string">'charset'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token single-quoted-string string">'utf8'</span><span class="token punctuation">,</span>
-<span class="token punctuation">]</span><span class="token punctuation">;</span></span></code></pre></div>
+<span class="token punctuation">]</span><span class="token punctuation">;</span></code></pre></div>
 <p>Then in <code class="language-text">\config\web.php</code>, add new database component:</p>
 <p><strong><code class="language-text">\config\web.php</code></strong></p>
-<div class="gridsome-highlight has-highlighted-lines" data-language="php"><pre class="language-php"><code class="language-php"><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
-
-<span class="token variable">$params</span> <span class="token operator">=</span> <span class="token keyword">require</span> <span class="token constant">__DIR__</span> <span class="token punctuation">.</span> <span class="token single-quoted-string string">'/params.php'</span><span class="token punctuation">;</span>
+<div class="gridsome-highlight has-highlighted-lines" data-language="php"><pre class="language-php"><code class="language-php"><span class="token variable">$params</span> <span class="token operator">=</span> <span class="token keyword">require</span> <span class="token constant">__DIR__</span> <span class="token punctuation">.</span> <span class="token single-quoted-string string">'/params.php'</span><span class="token punctuation">;</span>
 <span class="token variable">$db</span> <span class="token operator">=</span> <span class="token keyword">require</span> <span class="token constant">__DIR__</span> <span class="token punctuation">.</span> <span class="token single-quoted-string string">'/db.php'</span><span class="token punctuation">;</span>
 <span class="gridsome-highlight-code-line"><span class="token variable">$db2</span> <span class="token operator">=</span> <span class="token keyword">require</span> <span class="token constant">__DIR__</span> <span class="token punctuation">.</span> <span class="token single-quoted-string string">'/db2_name.php'</span><span class="token punctuation">;</span></span>
 <span class="token variable">$config</span> <span class="token operator">=</span> <span class="token punctuation">[</span>
@@ -1609,11 +1603,9 @@
 		<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">,</span>
 		<span class="token single-quoted-string string">'db'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token variable">$db</span><span class="token punctuation">,</span>
 <span class="gridsome-highlight-code-line">		<span class="token single-quoted-string string">'db2'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token variable">$db2</span><span class="token punctuation">,</span></span>	<span class="token punctuation">]</span>
-<span class="token punctuation">]</span></span></code></pre></div>
+<span class="token punctuation">]</span></code></pre></div>
 <p>In your migration file:</p>
-<div class="gridsome-highlight has-highlighted-lines" data-language="php"><pre class="language-php"><code class="language-php"><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
-
-<span class="token keyword">use</span> <span class="token package">yii<span class="token punctuation">\</span>db<span class="token punctuation">\</span>Migration</span><span class="token punctuation">;</span>
+<div class="gridsome-highlight has-highlighted-lines" data-language="php"><pre class="language-php"><code class="language-php"><span class="token keyword">use</span> <span class="token package">yii<span class="token punctuation">\</span>db<span class="token punctuation">\</span>Migration</span><span class="token punctuation">;</span>
 
 <span class="token comment">/**
  * Handles the creation of table `users`.
@@ -1638,7 +1630,7 @@
     <span class="token punctuation">{</span>
         <span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">dropTable</span><span class="token punctuation">(</span><span class="token single-quoted-string string">'users'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></span></code></pre></div>
+<span class="token punctuation">}</span></code></pre></div>
 <h2 id="credits"><a href="#credits" aria-hidden="true"><span class="icon icon-link"></span></a>Credits</h2>
 <blockquote>
 <p>Basically I'm just the transporter of the <strong>Yii2</strong> documentation. The full documentation can be found <a href="https://www.yiiframework.com/doc/guide/2.0/en/db-migrations" target="_blank" rel="nofollow noopener noreferrer">here</a>.</p>
