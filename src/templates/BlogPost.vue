@@ -185,6 +185,23 @@ header {
 		margin-top: 16px;
 		margin-bottom: 16px;
 	}
+
+	table, thead, tbody, tr, th, td {
+		border-collapse: collapse;
+		border: 1px solid white;
+		padding: 8px;
+	}
+
+	th {
+		text-shadow: 1px 1px 1px $shadow-color;
+		text-decoration: bold;
+	}
+
+	tbody{
+	tr:nth-child(odd) {
+		background-color: $dark2;
+		}
+	}
 }
 
 .gridsome-highlight-code-line {

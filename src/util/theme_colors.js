@@ -11,10 +11,14 @@ var dark_theme = Object.freeze({
 	navbar: '#041b2b',
 
 	// Label color
+	database: '#de8a00',
 	gridsome: '#00a672',
 	javascript: '#f7df1e',
-	vue: '#41b883',
 	misc: colors.pink,
+	php: '#607fb6',
+	sql: '#de8a00',
+	vue: '#41b883',
+	yii: '#467abf',
 });
 
 export default {
