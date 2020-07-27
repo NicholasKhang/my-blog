@@ -1,0 +1,1655 @@
+<!DOCTYPE html>
+<html data-html-server-rendered="true" lang="en" data-vue-tag="%7B%22lang%22:%7B%22ssr%22:%22en%22%7D%7D">
+  <head>
+    <title>PHP Yii2 - Database Migration - My Blog</title><meta name="gridsome:hash" content="584423bbf0d2eb9a268fe10c4015dc609ac6361b"><meta data-vue-tag="ssr" charset="utf-8"><meta data-vue-tag="ssr" name="generator" content="Gridsome v0.7.19"><meta data-vue-tag="ssr" data-key="viewport" name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta data-vue-tag="ssr" data-key="format-detection" name="format-detection" content="telephone=no"><meta data-vue-tag="ssr" data-key="description" name="description" content="Welcome to my blog"><meta data-vue-tag="ssr" property="og:url" name="og:url" content="https://nicholaskhang.github.io/my-blog/post/php-yii2-database-migration/"><meta data-vue-tag="ssr" property="og:type" name="og:type" content="blog"><meta data-vue-tag="ssr" property="og:title" name="og:title" content="PHP Yii2 - Database Migration"><meta data-vue-tag="ssr" property="og:description" name="og:description" content="Yii2 database migration cheat sheet"><meta data-vue-tag="ssr" property="og:image" name="og:image" content="https://nicholaskhang.github.io/my-blog/images/share/php-yii2-database-migration.png"><link data-vue-tag="ssr" rel="icon" href="data:,"><link data-vue-tag="ssr" rel="icon" type="image/png" sizes="16x16" href="/my-blog/assets/static/favicon.ce0531f.9bb7ffafafc09ac851d81afb65b8ef59.png"><link data-vue-tag="ssr" rel="icon" type="image/png" sizes="32x32" href="/my-blog/assets/static/favicon.ac8d93a.9bb7ffafafc09ac851d81afb65b8ef59.png"><link data-vue-tag="ssr" rel="icon" type="image/png" sizes="96x96" href="/my-blog/assets/static/favicon.b9532cc.9bb7ffafafc09ac851d81afb65b8ef59.png"><link data-vue-tag="ssr" rel="apple-touch-icon" type="image/png" sizes="76x76" href="/my-blog/assets/static/favicon.f22e9f3.9bb7ffafafc09ac851d81afb65b8ef59.png"><link data-vue-tag="ssr" rel="apple-touch-icon" type="image/png" sizes="152x152" href="/my-blog/assets/static/favicon.62d22cb.9bb7ffafafc09ac851d81afb65b8ef59.png"><link data-vue-tag="ssr" rel="apple-touch-icon" type="image/png" sizes="120x120" href="/my-blog/assets/static/favicon.1539b60.9bb7ffafafc09ac851d81afb65b8ef59.png"><link data-vue-tag="ssr" rel="apple-touch-icon" type="image/png" sizes="167x167" href="/my-blog/assets/static/favicon.dc0cdc5.9bb7ffafafc09ac851d81afb65b8ef59.png"><link data-vue-tag="ssr" rel="apple-touch-icon" type="image/png" sizes="180x180" href="/my-blog/assets/static/favicon.7b22250.9bb7ffafafc09ac851d81afb65b8ef59.png"><link data-vue-tag="ssr" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@latest/css/materialdesignicons.min.css"><link data-vue-tag="ssr" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900"><link rel="preload" href="/my-blog/assets/css/0.styles.0424e38f.css" as="style"><link rel="preload" href="/my-blog/assets/js/app.14884cd0.js" as="script"><link rel="preload" href="/my-blog/assets/js/page--src-templates-blog-post-vue.311578ad.js" as="script"><link rel="prefetch" href="/my-blog/assets/js/page--node-modules-gridsome-app-pages-404-vue.ba875e5f.js"><link rel="prefetch" href="/my-blog/assets/js/page--src-pages-about-vue.fe47a464.js"><link rel="prefetch" href="/my-blog/assets/js/page--src-pages-index-vue.2ac7605f.js"><link rel="prefetch" href="/my-blog/assets/js/page--src-templates-tag-vue.b29ee61b.js"><link rel="prefetch" href="/my-blog/assets/js/vendors~page--src-pages-index-vue.573efe9c.js"><link rel="prefetch" href="/my-blog/assets/js/vendors~page--src-templates-blog-post-vue.2ab04ecf.js"><link rel="stylesheet" href="/my-blog/assets/css/0.styles.0424e38f.css"><style data-vue-tag="vuetify" type="text/css" id="vuetify-theme-stylesheet" nonce="undefined">.v-application a { color: #1976d2; }
+.v-application .primary {
+  background-color: #1976d2 !important;
+  border-color: #1976d2 !important;
+}
+.v-application .primary--text {
+  color: #1976d2 !important;
+  caret-color: #1976d2 !important;
+}
+.v-application .primary.lighten-5 {
+  background-color: #c7fdff !important;
+  border-color: #c7fdff !important;
+}
+.v-application .primary--text.text--lighten-5 {
+  color: #c7fdff !important;
+  caret-color: #c7fdff !important;
+}
+.v-application .primary.lighten-4 {
+  background-color: #a8e0ff !important;
+  border-color: #a8e0ff !important;
+}
+.v-application .primary--text.text--lighten-4 {
+  color: #a8e0ff !important;
+  caret-color: #a8e0ff !important;
+}
+.v-application .primary.lighten-3 {
+  background-color: #8ac5ff !important;
+  border-color: #8ac5ff !important;
+}
+.v-application .primary--text.text--lighten-3 {
+  color: #8ac5ff !important;
+  caret-color: #8ac5ff !important;
+}
+.v-application .primary.lighten-2 {
+  background-color: #6aaaff !important;
+  border-color: #6aaaff !important;
+}
+.v-application .primary--text.text--lighten-2 {
+  color: #6aaaff !important;
+  caret-color: #6aaaff !important;
+}
+.v-application .primary.lighten-1 {
+  background-color: #488fef !important;
+  border-color: #488fef !important;
+}
+.v-application .primary--text.text--lighten-1 {
+  color: #488fef !important;
+  caret-color: #488fef !important;
+}
+.v-application .primary.darken-1 {
+  background-color: #005eb6 !important;
+  border-color: #005eb6 !important;
+}
+.v-application .primary--text.text--darken-1 {
+  color: #005eb6 !important;
+  caret-color: #005eb6 !important;
+}
+.v-application .primary.darken-2 {
+  background-color: #00479b !important;
+  border-color: #00479b !important;
+}
+.v-application .primary--text.text--darken-2 {
+  color: #00479b !important;
+  caret-color: #00479b !important;
+}
+.v-application .primary.darken-3 {
+  background-color: #003180 !important;
+  border-color: #003180 !important;
+}
+.v-application .primary--text.text--darken-3 {
+  color: #003180 !important;
+  caret-color: #003180 !important;
+}
+.v-application .primary.darken-4 {
+  background-color: #001e67 !important;
+  border-color: #001e67 !important;
+}
+.v-application .primary--text.text--darken-4 {
+  color: #001e67 !important;
+  caret-color: #001e67 !important;
+}
+.v-application .secondary {
+  background-color: #ff8f00 !important;
+  border-color: #ff8f00 !important;
+}
+.v-application .secondary--text {
+  color: #ff8f00 !important;
+  caret-color: #ff8f00 !important;
+}
+.v-application .secondary.lighten-5 {
+  background-color: #ffff9f !important;
+  border-color: #ffff9f !important;
+}
+.v-application .secondary--text.text--lighten-5 {
+  color: #ffff9f !important;
+  caret-color: #ffff9f !important;
+}
+.v-application .secondary.lighten-4 {
+  background-color: #ffff83 !important;
+  border-color: #ffff83 !important;
+}
+.v-application .secondary--text.text--lighten-4 {
+  color: #ffff83 !important;
+  caret-color: #ffff83 !important;
+}
+.v-application .secondary.lighten-3 {
+  background-color: #ffe267 !important;
+  border-color: #ffe267 !important;
+}
+.v-application .secondary--text.text--lighten-3 {
+  color: #ffe267 !important;
+  caret-color: #ffe267 !important;
+}
+.v-application .secondary.lighten-2 {
+  background-color: #ffc64b !important;
+  border-color: #ffc64b !important;
+}
+.v-application .secondary--text.text--lighten-2 {
+  color: #ffc64b !important;
+  caret-color: #ffc64b !important;
+}
+.v-application .secondary.lighten-1 {
+  background-color: #ffaa2d !important;
+  border-color: #ffaa2d !important;
+}
+.v-application .secondary--text.text--lighten-1 {
+  color: #ffaa2d !important;
+  caret-color: #ffaa2d !important;
+}
+.v-application .secondary.darken-1 {
+  background-color: #df7500 !important;
+  border-color: #df7500 !important;
+}
+.v-application .secondary--text.text--darken-1 {
+  color: #df7500 !important;
+  caret-color: #df7500 !important;
+}
+.v-application .secondary.darken-2 {
+  background-color: #bf5b00 !important;
+  border-color: #bf5b00 !important;
+}
+.v-application .secondary--text.text--darken-2 {
+  color: #bf5b00 !important;
+  caret-color: #bf5b00 !important;
+}
+.v-application .secondary.darken-3 {
+  background-color: #a04200 !important;
+  border-color: #a04200 !important;
+}
+.v-application .secondary--text.text--darken-3 {
+  color: #a04200 !important;
+  caret-color: #a04200 !important;
+}
+.v-application .secondary.darken-4 {
+  background-color: #832900 !important;
+  border-color: #832900 !important;
+}
+.v-application .secondary--text.text--darken-4 {
+  color: #832900 !important;
+  caret-color: #832900 !important;
+}
+.v-application .accent {
+  background-color: #424242 !important;
+  border-color: #424242 !important;
+}
+.v-application .accent--text {
+  color: #424242 !important;
+  caret-color: #424242 !important;
+}
+.v-application .accent.lighten-5 {
+  background-color: #c1c1c1 !important;
+  border-color: #c1c1c1 !important;
+}
+.v-application .accent--text.text--lighten-5 {
+  color: #c1c1c1 !important;
+  caret-color: #c1c1c1 !important;
+}
+.v-application .accent.lighten-4 {
+  background-color: #a6a6a6 !important;
+  border-color: #a6a6a6 !important;
+}
+.v-application .accent--text.text--lighten-4 {
+  color: #a6a6a6 !important;
+  caret-color: #a6a6a6 !important;
+}
+.v-application .accent.lighten-3 {
+  background-color: #8b8b8b !important;
+  border-color: #8b8b8b !important;
+}
+.v-application .accent--text.text--lighten-3 {
+  color: #8b8b8b !important;
+  caret-color: #8b8b8b !important;
+}
+.v-application .accent.lighten-2 {
+  background-color: #727272 !important;
+  border-color: #727272 !important;
+}
+.v-application .accent--text.text--lighten-2 {
+  color: #727272 !important;
+  caret-color: #727272 !important;
+}
+.v-application .accent.lighten-1 {
+  background-color: #595959 !important;
+  border-color: #595959 !important;
+}
+.v-application .accent--text.text--lighten-1 {
+  color: #595959 !important;
+  caret-color: #595959 !important;
+}
+.v-application .accent.darken-1 {
+  background-color: #2c2c2c !important;
+  border-color: #2c2c2c !important;
+}
+.v-application .accent--text.text--darken-1 {
+  color: #2c2c2c !important;
+  caret-color: #2c2c2c !important;
+}
+.v-application .accent.darken-2 {
+  background-color: #171717 !important;
+  border-color: #171717 !important;
+}
+.v-application .accent--text.text--darken-2 {
+  color: #171717 !important;
+  caret-color: #171717 !important;
+}
+.v-application .accent.darken-3 {
+  background-color: #000000 !important;
+  border-color: #000000 !important;
+}
+.v-application .accent--text.text--darken-3 {
+  color: #000000 !important;
+  caret-color: #000000 !important;
+}
+.v-application .accent.darken-4 {
+  background-color: #000000 !important;
+  border-color: #000000 !important;
+}
+.v-application .accent--text.text--darken-4 {
+  color: #000000 !important;
+  caret-color: #000000 !important;
+}
+.v-application .error {
+  background-color: #dd2c00 !important;
+  border-color: #dd2c00 !important;
+}
+.v-application .error--text {
+  color: #dd2c00 !important;
+  caret-color: #dd2c00 !important;
+}
+.v-application .error.lighten-5 {
+  background-color: #ffc187 !important;
+  border-color: #ffc187 !important;
+}
+.v-application .error--text.text--lighten-5 {
+  color: #ffc187 !important;
+  caret-color: #ffc187 !important;
+}
+.v-application .error.lighten-4 {
+  background-color: #ffa46c !important;
+  border-color: #ffa46c !important;
+}
+.v-application .error--text.text--lighten-4 {
+  color: #ffa46c !important;
+  caret-color: #ffa46c !important;
+}
+.v-application .error.lighten-3 {
+  background-color: #ff8753 !important;
+  border-color: #ff8753 !important;
+}
+.v-application .error--text.text--lighten-3 {
+  color: #ff8753 !important;
+  caret-color: #ff8753 !important;
+}
+.v-application .error.lighten-2 {
+  background-color: #ff6a39 !important;
+  border-color: #ff6a39 !important;
+}
+.v-application .error--text.text--lighten-2 {
+  color: #ff6a39 !important;
+  caret-color: #ff6a39 !important;
+}
+.v-application .error.lighten-1 {
+  background-color: #fe4d1f !important;
+  border-color: #fe4d1f !important;
+}
+.v-application .error--text.text--lighten-1 {
+  color: #fe4d1f !important;
+  caret-color: #fe4d1f !important;
+}
+.v-application .error.darken-1 {
+  background-color: #bc0000 !important;
+  border-color: #bc0000 !important;
+}
+.v-application .error--text.text--darken-1 {
+  color: #bc0000 !important;
+  caret-color: #bc0000 !important;
+}
+.v-application .error.darken-2 {
+  background-color: #9d0000 !important;
+  border-color: #9d0000 !important;
+}
+.v-application .error--text.text--darken-2 {
+  color: #9d0000 !important;
+  caret-color: #9d0000 !important;
+}
+.v-application .error.darken-3 {
+  background-color: #7f0000 !important;
+  border-color: #7f0000 !important;
+}
+.v-application .error--text.text--darken-3 {
+  color: #7f0000 !important;
+  caret-color: #7f0000 !important;
+}
+.v-application .error.darken-4 {
+  background-color: #630000 !important;
+  border-color: #630000 !important;
+}
+.v-application .error--text.text--darken-4 {
+  color: #630000 !important;
+  caret-color: #630000 !important;
+}
+.v-application .info {
+  background-color: #26a69a !important;
+  border-color: #26a69a !important;
+}
+.v-application .info--text {
+  color: #26a69a !important;
+  caret-color: #26a69a !important;
+}
+.v-application .info.lighten-5 {
+  background-color: #c3ffff !important;
+  border-color: #c3ffff !important;
+}
+.v-application .info--text.text--lighten-5 {
+  color: #c3ffff !important;
+  caret-color: #c3ffff !important;
+}
+.v-application .info.lighten-4 {
+  background-color: #a5ffff !important;
+  border-color: #a5ffff !important;
+}
+.v-application .info--text.text--lighten-4 {
+  color: #a5ffff !important;
+  caret-color: #a5ffff !important;
+}
+.v-application .info.lighten-3 {
+  background-color: #87fbed !important;
+  border-color: #87fbed !important;
+}
+.v-application .info--text.text--lighten-3 {
+  color: #87fbed !important;
+  caret-color: #87fbed !important;
+}
+.v-application .info.lighten-2 {
+  background-color: #6aded0 !important;
+  border-color: #6aded0 !important;
+}
+.v-application .info--text.text--lighten-2 {
+  color: #6aded0 !important;
+  caret-color: #6aded0 !important;
+}
+.v-application .info.lighten-1 {
+  background-color: #4bc2b5 !important;
+  border-color: #4bc2b5 !important;
+}
+.v-application .info--text.text--lighten-1 {
+  color: #4bc2b5 !important;
+  caret-color: #4bc2b5 !important;
+}
+.v-application .info.darken-1 {
+  background-color: #008b80 !important;
+  border-color: #008b80 !important;
+}
+.v-application .info--text.text--darken-1 {
+  color: #008b80 !important;
+  caret-color: #008b80 !important;
+}
+.v-application .info.darken-2 {
+  background-color: #007167 !important;
+  border-color: #007167 !important;
+}
+.v-application .info--text.text--darken-2 {
+  color: #007167 !important;
+  caret-color: #007167 !important;
+}
+.v-application .info.darken-3 {
+  background-color: #00584f !important;
+  border-color: #00584f !important;
+}
+.v-application .info--text.text--darken-3 {
+  color: #00584f !important;
+  caret-color: #00584f !important;
+}
+.v-application .info.darken-4 {
+  background-color: #004038 !important;
+  border-color: #004038 !important;
+}
+.v-application .info--text.text--darken-4 {
+  color: #004038 !important;
+  caret-color: #004038 !important;
+}
+.v-application .success {
+  background-color: #00e676 !important;
+  border-color: #00e676 !important;
+}
+.v-application .success--text {
+  color: #00e676 !important;
+  caret-color: #00e676 !important;
+}
+.v-application .success.lighten-5 {
+  background-color: #ceffff !important;
+  border-color: #ceffff !important;
+}
+.v-application .success--text.text--lighten-5 {
+  color: #ceffff !important;
+  caret-color: #ceffff !important;
+}
+.v-application .success.lighten-4 {
+  background-color: #afffe4 !important;
+  border-color: #afffe4 !important;
+}
+.v-application .success--text.text--lighten-4 {
+  color: #afffe4 !important;
+  caret-color: #afffe4 !important;
+}
+.v-application .success.lighten-3 {
+  background-color: #8fffc8 !important;
+  border-color: #8fffc8 !important;
+}
+.v-application .success--text.text--lighten-3 {
+  color: #8fffc8 !important;
+  caret-color: #8fffc8 !important;
+}
+.v-application .success.lighten-2 {
+  background-color: #6dffac !important;
+  border-color: #6dffac !important;
+}
+.v-application .success--text.text--lighten-2 {
+  color: #6dffac !important;
+  caret-color: #6dffac !important;
+}
+.v-application .success.lighten-1 {
+  background-color: #47ff91 !important;
+  border-color: #47ff91 !important;
+}
+.v-application .success--text.text--lighten-1 {
+  color: #47ff91 !important;
+  caret-color: #47ff91 !important;
+}
+.v-application .success.darken-1 {
+  background-color: #00c95c !important;
+  border-color: #00c95c !important;
+}
+.v-application .success--text.text--darken-1 {
+  color: #00c95c !important;
+  caret-color: #00c95c !important;
+}
+.v-application .success.darken-2 {
+  background-color: #00ad43 !important;
+  border-color: #00ad43 !important;
+}
+.v-application .success--text.text--darken-2 {
+  color: #00ad43 !important;
+  caret-color: #00ad43 !important;
+}
+.v-application .success.darken-3 {
+  background-color: #009129 !important;
+  border-color: #009129 !important;
+}
+.v-application .success--text.text--darken-3 {
+  color: #009129 !important;
+  caret-color: #009129 !important;
+}
+.v-application .success.darken-4 {
+  background-color: #00760d !important;
+  border-color: #00760d !important;
+}
+.v-application .success--text.text--darken-4 {
+  color: #00760d !important;
+  caret-color: #00760d !important;
+}
+.v-application .warning {
+  background-color: #ffc107 !important;
+  border-color: #ffc107 !important;
+}
+.v-application .warning--text {
+  color: #ffc107 !important;
+  caret-color: #ffc107 !important;
+}
+.v-application .warning.lighten-5 {
+  background-color: #ffffae !important;
+  border-color: #ffffae !important;
+}
+.v-application .warning--text.text--lighten-5 {
+  color: #ffffae !important;
+  caret-color: #ffffae !important;
+}
+.v-application .warning.lighten-4 {
+  background-color: #ffff91 !important;
+  border-color: #ffff91 !important;
+}
+.v-application .warning--text.text--lighten-4 {
+  color: #ffff91 !important;
+  caret-color: #ffff91 !important;
+}
+.v-application .warning.lighten-3 {
+  background-color: #ffff74 !important;
+  border-color: #ffff74 !important;
+}
+.v-application .warning--text.text--lighten-3 {
+  color: #ffff74 !important;
+  caret-color: #ffff74 !important;
+}
+.v-application .warning.lighten-2 {
+  background-color: #fff956 !important;
+  border-color: #fff956 !important;
+}
+.v-application .warning--text.text--lighten-2 {
+  color: #fff956 !important;
+  caret-color: #fff956 !important;
+}
+.v-application .warning.lighten-1 {
+  background-color: #ffdd37 !important;
+  border-color: #ffdd37 !important;
+}
+.v-application .warning--text.text--lighten-1 {
+  color: #ffdd37 !important;
+  caret-color: #ffdd37 !important;
+}
+.v-application .warning.darken-1 {
+  background-color: #e0a600 !important;
+  border-color: #e0a600 !important;
+}
+.v-application .warning--text.text--darken-1 {
+  color: #e0a600 !important;
+  caret-color: #e0a600 !important;
+}
+.v-application .warning.darken-2 {
+  background-color: #c18c00 !important;
+  border-color: #c18c00 !important;
+}
+.v-application .warning--text.text--darken-2 {
+  color: #c18c00 !important;
+  caret-color: #c18c00 !important;
+}
+.v-application .warning.darken-3 {
+  background-color: #a27300 !important;
+  border-color: #a27300 !important;
+}
+.v-application .warning--text.text--darken-3 {
+  color: #a27300 !important;
+  caret-color: #a27300 !important;
+}
+.v-application .warning.darken-4 {
+  background-color: #855a00 !important;
+  border-color: #855a00 !important;
+}
+.v-application .warning--text.text--darken-4 {
+  color: #855a00 !important;
+  caret-color: #855a00 !important;
+}
+.v-application .navbar {
+  background-color: #041b2b !important;
+  border-color: #041b2b !important;
+}
+.v-application .navbar--text {
+  color: #041b2b !important;
+  caret-color: #041b2b !important;
+}
+.v-application .navbar.lighten-5 {
+  background-color: #7c90a5 !important;
+  border-color: #7c90a5 !important;
+}
+.v-application .navbar--text.text--lighten-5 {
+  color: #7c90a5 !important;
+  caret-color: #7c90a5 !important;
+}
+.v-application .navbar.lighten-4 {
+  background-color: #63768b !important;
+  border-color: #63768b !important;
+}
+.v-application .navbar--text.text--lighten-4 {
+  color: #63768b !important;
+  caret-color: #63768b !important;
+}
+.v-application .navbar.lighten-3 {
+  background-color: #4a5e71 !important;
+  border-color: #4a5e71 !important;
+}
+.v-application .navbar--text.text--lighten-3 {
+  color: #4a5e71 !important;
+  caret-color: #4a5e71 !important;
+}
+.v-application .navbar.lighten-2 {
+  background-color: #324659 !important;
+  border-color: #324659 !important;
+}
+.v-application .navbar--text.text--lighten-2 {
+  color: #324659 !important;
+  caret-color: #324659 !important;
+}
+.v-application .navbar.lighten-1 {
+  background-color: #1b3041 !important;
+  border-color: #1b3041 !important;
+}
+.v-application .navbar--text.text--lighten-1 {
+  color: #1b3041 !important;
+  caret-color: #1b3041 !important;
+}
+.v-application .navbar.darken-1 {
+  background-color: #000017 !important;
+  border-color: #000017 !important;
+}
+.v-application .navbar--text.text--darken-1 {
+  color: #000017 !important;
+  caret-color: #000017 !important;
+}
+.v-application .navbar.darken-2 {
+  background-color: #000000 !important;
+  border-color: #000000 !important;
+}
+.v-application .navbar--text.text--darken-2 {
+  color: #000000 !important;
+  caret-color: #000000 !important;
+}
+.v-application .navbar.darken-3 {
+  background-color: #000000 !important;
+  border-color: #000000 !important;
+}
+.v-application .navbar--text.text--darken-3 {
+  color: #000000 !important;
+  caret-color: #000000 !important;
+}
+.v-application .navbar.darken-4 {
+  background-color: #000000 !important;
+  border-color: #000000 !important;
+}
+.v-application .navbar--text.text--darken-4 {
+  color: #000000 !important;
+  caret-color: #000000 !important;
+}
+.v-application .database {
+  background-color: #de8a00 !important;
+  border-color: #de8a00 !important;
+}
+.v-application .database--text {
+  color: #de8a00 !important;
+  caret-color: #de8a00 !important;
+}
+.v-application .database.lighten-5 {
+  background-color: #ffff9c !important;
+  border-color: #ffff9c !important;
+}
+.v-application .database--text.text--lighten-5 {
+  color: #ffff9c !important;
+  caret-color: #ffff9c !important;
+}
+.v-application .database.lighten-4 {
+  background-color: #fff880 !important;
+  border-color: #fff880 !important;
+}
+.v-application .database--text.text--lighten-4 {
+  color: #fff880 !important;
+  caret-color: #fff880 !important;
+}
+.v-application .database.lighten-3 {
+  background-color: #ffdc64 !important;
+  border-color: #ffdc64 !important;
+}
+.v-application .database--text.text--lighten-3 {
+  color: #ffdc64 !important;
+  caret-color: #ffdc64 !important;
+}
+.v-application .database.lighten-2 {
+  background-color: #ffc049 !important;
+  border-color: #ffc049 !important;
+}
+.v-application .database--text.text--lighten-2 {
+  color: #ffc049 !important;
+  caret-color: #ffc049 !important;
+}
+.v-application .database.lighten-1 {
+  background-color: #fda42b !important;
+  border-color: #fda42b !important;
+}
+.v-application .database--text.text--lighten-1 {
+  color: #fda42b !important;
+  caret-color: #fda42b !important;
+}
+.v-application .database.darken-1 {
+  background-color: #bf7000 !important;
+  border-color: #bf7000 !important;
+}
+.v-application .database--text.text--darken-1 {
+  color: #bf7000 !important;
+  caret-color: #bf7000 !important;
+}
+.v-application .database.darken-2 {
+  background-color: #a05800 !important;
+  border-color: #a05800 !important;
+}
+.v-application .database--text.text--darken-2 {
+  color: #a05800 !important;
+  caret-color: #a05800 !important;
+}
+.v-application .database.darken-3 {
+  background-color: #834000 !important;
+  border-color: #834000 !important;
+}
+.v-application .database--text.text--darken-3 {
+  color: #834000 !important;
+  caret-color: #834000 !important;
+}
+.v-application .database.darken-4 {
+  background-color: #682800 !important;
+  border-color: #682800 !important;
+}
+.v-application .database--text.text--darken-4 {
+  color: #682800 !important;
+  caret-color: #682800 !important;
+}
+.v-application .gridsome {
+  background-color: #00a672 !important;
+  border-color: #00a672 !important;
+}
+.v-application .gridsome--text {
+  color: #00a672 !important;
+  caret-color: #00a672 !important;
+}
+.v-application .gridsome.lighten-5 {
+  background-color: #b5fffa !important;
+  border-color: #b5fffa !important;
+}
+.v-application .gridsome--text.text--lighten-5 {
+  color: #b5fffa !important;
+  caret-color: #b5fffa !important;
+}
+.v-application .gridsome.lighten-4 {
+  background-color: #97ffdd !important;
+  border-color: #97ffdd !important;
+}
+.v-application .gridsome--text.text--lighten-4 {
+  color: #97ffdd !important;
+  caret-color: #97ffdd !important;
+}
+.v-application .gridsome.lighten-3 {
+  background-color: #79fbc1 !important;
+  border-color: #79fbc1 !important;
+}
+.v-application .gridsome--text.text--lighten-3 {
+  color: #79fbc1 !important;
+  caret-color: #79fbc1 !important;
+}
+.v-application .gridsome.lighten-2 {
+  background-color: #5bdea6 !important;
+  border-color: #5bdea6 !important;
+}
+.v-application .gridsome--text.text--lighten-2 {
+  color: #5bdea6 !important;
+  caret-color: #5bdea6 !important;
+}
+.v-application .gridsome.lighten-1 {
+  background-color: #39c28c !important;
+  border-color: #39c28c !important;
+}
+.v-application .gridsome--text.text--lighten-1 {
+  color: #39c28c !important;
+  caret-color: #39c28c !important;
+}
+.v-application .gridsome.darken-1 {
+  background-color: #008b59 !important;
+  border-color: #008b59 !important;
+}
+.v-application .gridsome--text.text--darken-1 {
+  color: #008b59 !important;
+  caret-color: #008b59 !important;
+}
+.v-application .gridsome.darken-2 {
+  background-color: #007142 !important;
+  border-color: #007142 !important;
+}
+.v-application .gridsome--text.text--darken-2 {
+  color: #007142 !important;
+  caret-color: #007142 !important;
+}
+.v-application .gridsome.darken-3 {
+  background-color: #00572b !important;
+  border-color: #00572b !important;
+}
+.v-application .gridsome--text.text--darken-3 {
+  color: #00572b !important;
+  caret-color: #00572b !important;
+}
+.v-application .gridsome.darken-4 {
+  background-color: #003f16 !important;
+  border-color: #003f16 !important;
+}
+.v-application .gridsome--text.text--darken-4 {
+  color: #003f16 !important;
+  caret-color: #003f16 !important;
+}
+.v-application .javascript {
+  background-color: #f7df1e !important;
+  border-color: #f7df1e !important;
+}
+.v-application .javascript--text {
+  color: #f7df1e !important;
+  caret-color: #f7df1e !important;
+}
+.v-application .javascript.lighten-5 {
+  background-color: #ffffbc !important;
+  border-color: #ffffbc !important;
+}
+.v-application .javascript--text.text--lighten-5 {
+  color: #ffffbc !important;
+  caret-color: #ffffbc !important;
+}
+.v-application .javascript.lighten-4 {
+  background-color: #ffff9e !important;
+  border-color: #ffff9e !important;
+}
+.v-application .javascript--text.text--lighten-4 {
+  color: #ffff9e !important;
+  caret-color: #ffff9e !important;
+}
+.v-application .javascript.lighten-3 {
+  background-color: #ffff81 !important;
+  border-color: #ffff81 !important;
+}
+.v-application .javascript--text.text--lighten-3 {
+  color: #ffff81 !important;
+  caret-color: #ffff81 !important;
+}
+.v-application .javascript.lighten-2 {
+  background-color: #ffff64 !important;
+  border-color: #ffff64 !important;
+}
+.v-application .javascript--text.text--lighten-2 {
+  color: #ffff64 !important;
+  caret-color: #ffff64 !important;
+}
+.v-application .javascript.lighten-1 {
+  background-color: #fffb44 !important;
+  border-color: #fffb44 !important;
+}
+.v-application .javascript--text.text--lighten-1 {
+  color: #fffb44 !important;
+  caret-color: #fffb44 !important;
+}
+.v-application .javascript.darken-1 {
+  background-color: #d8c300 !important;
+  border-color: #d8c300 !important;
+}
+.v-application .javascript--text.text--darken-1 {
+  color: #d8c300 !important;
+  caret-color: #d8c300 !important;
+}
+.v-application .javascript.darken-2 {
+  background-color: #baa800 !important;
+  border-color: #baa800 !important;
+}
+.v-application .javascript--text.text--darken-2 {
+  color: #baa800 !important;
+  caret-color: #baa800 !important;
+}
+.v-application .javascript.darken-3 {
+  background-color: #9c8e00 !important;
+  border-color: #9c8e00 !important;
+}
+.v-application .javascript--text.text--darken-3 {
+  color: #9c8e00 !important;
+  caret-color: #9c8e00 !important;
+}
+.v-application .javascript.darken-4 {
+  background-color: #7f7500 !important;
+  border-color: #7f7500 !important;
+}
+.v-application .javascript--text.text--darken-4 {
+  color: #7f7500 !important;
+  caret-color: #7f7500 !important;
+}
+.v-application .misc {
+  background-color: #e91e63 !important;
+  border-color: #e91e63 !important;
+}
+.v-application .misc--text {
+  color: #e91e63 !important;
+  caret-color: #e91e63 !important;
+}
+.v-application .misc.lighten-5 {
+  background-color: #fce4ec !important;
+  border-color: #fce4ec !important;
+}
+.v-application .misc--text.text--lighten-5 {
+  color: #fce4ec !important;
+  caret-color: #fce4ec !important;
+}
+.v-application .misc.lighten-4 {
+  background-color: #f8bbd0 !important;
+  border-color: #f8bbd0 !important;
+}
+.v-application .misc--text.text--lighten-4 {
+  color: #f8bbd0 !important;
+  caret-color: #f8bbd0 !important;
+}
+.v-application .misc.lighten-3 {
+  background-color: #f48fb1 !important;
+  border-color: #f48fb1 !important;
+}
+.v-application .misc--text.text--lighten-3 {
+  color: #f48fb1 !important;
+  caret-color: #f48fb1 !important;
+}
+.v-application .misc.lighten-2 {
+  background-color: #f06292 !important;
+  border-color: #f06292 !important;
+}
+.v-application .misc--text.text--lighten-2 {
+  color: #f06292 !important;
+  caret-color: #f06292 !important;
+}
+.v-application .misc.lighten-1 {
+  background-color: #ec407a !important;
+  border-color: #ec407a !important;
+}
+.v-application .misc--text.text--lighten-1 {
+  color: #ec407a !important;
+  caret-color: #ec407a !important;
+}
+.v-application .misc.darken-1 {
+  background-color: #d81b60 !important;
+  border-color: #d81b60 !important;
+}
+.v-application .misc--text.text--darken-1 {
+  color: #d81b60 !important;
+  caret-color: #d81b60 !important;
+}
+.v-application .misc.darken-2 {
+  background-color: #c2185b !important;
+  border-color: #c2185b !important;
+}
+.v-application .misc--text.text--darken-2 {
+  color: #c2185b !important;
+  caret-color: #c2185b !important;
+}
+.v-application .misc.darken-3 {
+  background-color: #ad1457 !important;
+  border-color: #ad1457 !important;
+}
+.v-application .misc--text.text--darken-3 {
+  color: #ad1457 !important;
+  caret-color: #ad1457 !important;
+}
+.v-application .misc.darken-4 {
+  background-color: #880e4f !important;
+  border-color: #880e4f !important;
+}
+.v-application .misc--text.text--darken-4 {
+  color: #880e4f !important;
+  caret-color: #880e4f !important;
+}
+.v-application .php {
+  background-color: #607fb6 !important;
+  border-color: #607fb6 !important;
+}
+.v-application .php--text {
+  color: #607fb6 !important;
+  caret-color: #607fb6 !important;
+}
+.v-application .php.lighten-5 {
+  background-color: #ecffff !important;
+  border-color: #ecffff !important;
+}
+.v-application .php--text.text--lighten-5 {
+  color: #ecffff !important;
+  caret-color: #ecffff !important;
+}
+.v-application .php.lighten-4 {
+  background-color: #cfebff !important;
+  border-color: #cfebff !important;
+}
+.v-application .php--text.text--lighten-4 {
+  color: #cfebff !important;
+  caret-color: #cfebff !important;
+}
+.v-application .php.lighten-3 {
+  background-color: #b2cfff !important;
+  border-color: #b2cfff !important;
+}
+.v-application .php--text.text--lighten-3 {
+  color: #b2cfff !important;
+  caret-color: #b2cfff !important;
+}
+.v-application .php.lighten-2 {
+  background-color: #96b4ee !important;
+  border-color: #96b4ee !important;
+}
+.v-application .php--text.text--lighten-2 {
+  color: #96b4ee !important;
+  caret-color: #96b4ee !important;
+}
+.v-application .php.lighten-1 {
+  background-color: #7b99d2 !important;
+  border-color: #7b99d2 !important;
+}
+.v-application .php--text.text--lighten-1 {
+  color: #7b99d2 !important;
+  caret-color: #7b99d2 !important;
+}
+.v-application .php.darken-1 {
+  background-color: #45669b !important;
+  border-color: #45669b !important;
+}
+.v-application .php--text.text--darken-1 {
+  color: #45669b !important;
+  caret-color: #45669b !important;
+}
+.v-application .php.darken-2 {
+  background-color: #294e81 !important;
+  border-color: #294e81 !important;
+}
+.v-application .php--text.text--darken-2 {
+  color: #294e81 !important;
+  caret-color: #294e81 !important;
+}
+.v-application .php.darken-3 {
+  background-color: #013867 !important;
+  border-color: #013867 !important;
+}
+.v-application .php--text.text--darken-3 {
+  color: #013867 !important;
+  caret-color: #013867 !important;
+}
+.v-application .php.darken-4 {
+  background-color: #00234f !important;
+  border-color: #00234f !important;
+}
+.v-application .php--text.text--darken-4 {
+  color: #00234f !important;
+  caret-color: #00234f !important;
+}
+.v-application .sql {
+  background-color: #de8a00 !important;
+  border-color: #de8a00 !important;
+}
+.v-application .sql--text {
+  color: #de8a00 !important;
+  caret-color: #de8a00 !important;
+}
+.v-application .sql.lighten-5 {
+  background-color: #ffff9c !important;
+  border-color: #ffff9c !important;
+}
+.v-application .sql--text.text--lighten-5 {
+  color: #ffff9c !important;
+  caret-color: #ffff9c !important;
+}
+.v-application .sql.lighten-4 {
+  background-color: #fff880 !important;
+  border-color: #fff880 !important;
+}
+.v-application .sql--text.text--lighten-4 {
+  color: #fff880 !important;
+  caret-color: #fff880 !important;
+}
+.v-application .sql.lighten-3 {
+  background-color: #ffdc64 !important;
+  border-color: #ffdc64 !important;
+}
+.v-application .sql--text.text--lighten-3 {
+  color: #ffdc64 !important;
+  caret-color: #ffdc64 !important;
+}
+.v-application .sql.lighten-2 {
+  background-color: #ffc049 !important;
+  border-color: #ffc049 !important;
+}
+.v-application .sql--text.text--lighten-2 {
+  color: #ffc049 !important;
+  caret-color: #ffc049 !important;
+}
+.v-application .sql.lighten-1 {
+  background-color: #fda42b !important;
+  border-color: #fda42b !important;
+}
+.v-application .sql--text.text--lighten-1 {
+  color: #fda42b !important;
+  caret-color: #fda42b !important;
+}
+.v-application .sql.darken-1 {
+  background-color: #bf7000 !important;
+  border-color: #bf7000 !important;
+}
+.v-application .sql--text.text--darken-1 {
+  color: #bf7000 !important;
+  caret-color: #bf7000 !important;
+}
+.v-application .sql.darken-2 {
+  background-color: #a05800 !important;
+  border-color: #a05800 !important;
+}
+.v-application .sql--text.text--darken-2 {
+  color: #a05800 !important;
+  caret-color: #a05800 !important;
+}
+.v-application .sql.darken-3 {
+  background-color: #834000 !important;
+  border-color: #834000 !important;
+}
+.v-application .sql--text.text--darken-3 {
+  color: #834000 !important;
+  caret-color: #834000 !important;
+}
+.v-application .sql.darken-4 {
+  background-color: #682800 !important;
+  border-color: #682800 !important;
+}
+.v-application .sql--text.text--darken-4 {
+  color: #682800 !important;
+  caret-color: #682800 !important;
+}
+.v-application .vue {
+  background-color: #41b883 !important;
+  border-color: #41b883 !important;
+}
+.v-application .vue--text {
+  color: #41b883 !important;
+  caret-color: #41b883 !important;
+}
+.v-application .vue.lighten-5 {
+  background-color: #d5ffff !important;
+  border-color: #d5ffff !important;
+}
+.v-application .vue--text.text--lighten-5 {
+  color: #d5ffff !important;
+  caret-color: #d5ffff !important;
+}
+.v-application .vue.lighten-4 {
+  background-color: #b7fff0 !important;
+  border-color: #b7fff0 !important;
+}
+.v-application .vue--text.text--lighten-4 {
+  color: #b7fff0 !important;
+  caret-color: #b7fff0 !important;
+}
+.v-application .vue.lighten-3 {
+  background-color: #9affd4 !important;
+  border-color: #9affd4 !important;
+}
+.v-application .vue--text.text--lighten-3 {
+  color: #9affd4 !important;
+  caret-color: #9affd4 !important;
+}
+.v-application .vue.lighten-2 {
+  background-color: #7df1b8 !important;
+  border-color: #7df1b8 !important;
+}
+.v-application .vue--text.text--lighten-2 {
+  color: #7df1b8 !important;
+  caret-color: #7df1b8 !important;
+}
+.v-application .vue.lighten-1 {
+  background-color: #60d49d !important;
+  border-color: #60d49d !important;
+}
+.v-application .vue--text.text--lighten-1 {
+  color: #60d49d !important;
+  caret-color: #60d49d !important;
+}
+.v-application .vue.darken-1 {
+  background-color: #1b9d6a !important;
+  border-color: #1b9d6a !important;
+}
+.v-application .vue--text.text--darken-1 {
+  color: #1b9d6a !important;
+  caret-color: #1b9d6a !important;
+}
+.v-application .vue.darken-2 {
+  background-color: #008251 !important;
+  border-color: #008251 !important;
+}
+.v-application .vue--text.text--darken-2 {
+  color: #008251 !important;
+  caret-color: #008251 !important;
+}
+.v-application .vue.darken-3 {
+  background-color: #00683a !important;
+  border-color: #00683a !important;
+}
+.v-application .vue--text.text--darken-3 {
+  color: #00683a !important;
+  caret-color: #00683a !important;
+}
+.v-application .vue.darken-4 {
+  background-color: #004f24 !important;
+  border-color: #004f24 !important;
+}
+.v-application .vue--text.text--darken-4 {
+  color: #004f24 !important;
+  caret-color: #004f24 !important;
+}
+.v-application .yii {
+  background-color: #467abf !important;
+  border-color: #467abf !important;
+}
+.v-application .yii--text {
+  color: #467abf !important;
+  caret-color: #467abf !important;
+}
+.v-application .yii.lighten-5 {
+  background-color: #d8ffff !important;
+  border-color: #d8ffff !important;
+}
+.v-application .yii--text.text--lighten-5 {
+  color: #d8ffff !important;
+  caret-color: #d8ffff !important;
+}
+.v-application .yii.lighten-4 {
+  background-color: #bae5ff !important;
+  border-color: #bae5ff !important;
+}
+.v-application .yii--text.text--lighten-4 {
+  color: #bae5ff !important;
+  caret-color: #bae5ff !important;
+}
+.v-application .yii.lighten-3 {
+  background-color: #9dc9ff !important;
+  border-color: #9dc9ff !important;
+}
+.v-application .yii--text.text--lighten-3 {
+  color: #9dc9ff !important;
+  caret-color: #9dc9ff !important;
+}
+.v-application .yii.lighten-2 {
+  background-color: #81aef8 !important;
+  border-color: #81aef8 !important;
+}
+.v-application .yii--text.text--lighten-2 {
+  color: #81aef8 !important;
+  caret-color: #81aef8 !important;
+}
+.v-application .yii.lighten-1 {
+  background-color: #6494db !important;
+  border-color: #6494db !important;
+}
+.v-application .yii--text.text--lighten-1 {
+  color: #6494db !important;
+  caret-color: #6494db !important;
+}
+.v-application .yii.darken-1 {
+  background-color: #2461a4 !important;
+  border-color: #2461a4 !important;
+}
+.v-application .yii--text.text--darken-1 {
+  color: #2461a4 !important;
+  caret-color: #2461a4 !important;
+}
+.v-application .yii.darken-2 {
+  background-color: #004a89 !important;
+  border-color: #004a89 !important;
+}
+.v-application .yii--text.text--darken-2 {
+  color: #004a89 !important;
+  caret-color: #004a89 !important;
+}
+.v-application .yii.darken-3 {
+  background-color: #00346f !important;
+  border-color: #00346f !important;
+}
+.v-application .yii--text.text--darken-3 {
+  color: #00346f !important;
+  caret-color: #00346f !important;
+}
+.v-application .yii.darken-4 {
+  background-color: #001f56 !important;
+  border-color: #001f56 !important;
+}
+.v-application .yii--text.text--darken-4 {
+  color: #001f56 !important;
+  caret-color: #001f56 !important;
+}</style><noscript data-vue-tag="ssr"><style>.g-image--loading{display:none;}</style></noscript>
+  </head>
+  <body >
+    <div data-app="true" data-server-rendered="true" id="app" id="app" class="v-application v-application--is-ltr theme--dark"><div class="v-application--wrap"><header class="v-sheet theme--dark v-toolbar v-app-bar v-app-bar--elevate-on-scroll v-app-bar--fixed v-app-bar--hide-shadow navbar" style="height:64px;margin-top:0px;transform:translateY(0px);left:0px;right:0px;"><div class="v-toolbar__content" style="height:64px;"><div id="logo" class="v-toolbar__title"><a href="/my-blog/" class="active">
+			NIC
+		</a></div><div class="spacer"></div><button type="button" class="v-btn v-btn--flat v-btn--icon v-btn--round theme--dark v-size--default"><span class="v-btn__content"><a href="https://github.com/NicholasKhang" target="_blank" rel="noopener"><i aria-hidden="true" class="v-icon notranslate mdi mdi-github theme--dark" style="font-size:36px;"></i></a></span></button><button type="button" class="v-btn v-btn--flat v-btn--icon v-btn--round theme--dark v-size--default"><span class="v-btn__content"><a href="https://nicholaskhang.github.io" target="_blank" rel="noopener"><i aria-hidden="true" class="v-icon notranslate mdi mdi-web theme--dark" style="font-size:36px;"></i></a></span></button></div></header><main class="v-main" style="padding-top:64px;padding-right:0px;padding-bottom:0px;padding-left:0px;"><div class="v-main__wrap"><div class="container"><article><header class="text-center"><h1>PHP Yii2 - Database Migration</h1><p class="post-date">Published on July 25, 2020 12:00pm</p><a href="/tag/Yii/" aria-current="page" class="active--exact active"><span draggable="false" class="ma-2 v-chip v-chip--label theme--dark v-size--default yii"><span class="v-chip__content">
+						#Yii
+					</span></span></a><a href="/tag/PHP/" aria-current="page" class="active--exact active"><span draggable="false" class="ma-2 v-chip v-chip--label theme--dark v-size--default php"><span class="v-chip__content">
+						#PHP
+					</span></span></a><a href="/tag/SQL/" aria-current="page" class="active--exact active"><span draggable="false" class="ma-2 v-chip v-chip--label theme--dark v-size--default sql"><span class="v-chip__content">
+						#SQL
+					</span></span></a><a href="/tag/Database/" aria-current="page" class="active--exact active"><span draggable="false" class="ma-2 v-chip v-chip--label theme--dark v-size--default database"><span class="v-chip__content">
+						#Database
+					</span></span></a><br><a class="share-network-facebook"><span class="v-tooltip v-tooltip--bottom"><!----><i aria-hidden="true" role="button" aria-haspopup="true" aria-expanded="false" class="v-icon notranslate mdi mdi-facebook theme--dark"></i></span></a></header><main class="content"><h1 id="introduction"><a href="#introduction" aria-hidden="true"><span class="icon icon-link"></span></a>Introduction</h1>
+<p>Database Migration is a very useful feature in Yii2 to maintain and monitor your database structure. It's a <em>version-controlled</em> for your database structure so that we can keep track of our database structure changes.</p>
+<h2 id="topics"><a href="#topics" aria-hidden="true"><span class="icon icon-link"></span></a>Topics</h2>
+<ul>
+<li><a href="#commands">Commands</a></li>
+<li><a href="#create-migration">Create Migration</a></li>
+<li><a href="#create-table">Create Table</a></li>
+<li><a href="#data-type-list">Data Type List</a></li>
+<li><a href="#drop-table">Drop Table</a></li>
+<li><a href="#rename-table">Rename Table</a></li>
+<li><a href="#add-column">Add Column</a></li>
+<li><a href="#drop-column">Drop Column</a></li>
+<li><a href="#alter-column">Alter Column</a></li>
+<li><a href="#add-primary-key">Add Primary Key</a></li>
+<li><a href="#drop-primary-key">Drop Primary Key</a></li>
+<li><a href="#create-index">Create Index</a></li>
+<li><a href="#drop-index">Drop Index</a></li>
+<li><a href="#add-foreign-key">Add Foreign Key</a></li>
+<li><a href="#drop-foreign-key">Drop Foreign Key</a></li>
+<li><a href="#insert-records">Insert Records</a></li>
+<li><a href="#raw-sql">Raw SQL</a></li>
+<li><a href="#change-database">Change Database</a></li>
+</ul>
+<h2 id="commands"><a href="#commands" aria-hidden="true"><span class="icon icon-link"></span></a>Commands</h2>
+<p>To view the complete list of yii migration commands, run the following command:</p>
+<div class="gridsome-highlight" data-language="bash"><pre class="language-bash"><code class="language-bash">$ yii <span class="token builtin class-name">help</span> migrate</code></pre></div>
+<p>You will get the following result:</p>
+<p><img class="g-image g-image--lazy g-image--loading" src="data:image/svg+xml,%3csvg fill='none' viewBox='0 0 650 143' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'%3e%3cdefs%3e%3cfilter id='__svg-blur-79b78cedc721598c20ff8ad6da2672ef'%3e%3cfeGaussianBlur in='SourceGraphic' stdDeviation='40'/%3e%3c/filter%3e%3c/defs%3e%3cimage x='0' y='0' filter='url(%23__svg-blur-79b78cedc721598c20ff8ad6da2672ef)' width='650' height='143' xlink:href='data:image/png%3bbase64%2ciVBORw0KGgoAAAANSUhEUgAAAEAAAAAOCAYAAACfOxrCAAAACXBIWXMAAA7DAAAOwwHHb6hkAAAHUElEQVRIx61XWXvaSBDMt74CmEvch7iF7gskMDZOYm92//8/6q1qAcbJ7ts%2b6JPEjHpmqquqmy/1RkNqtZr0%2b31p4NkwDGm3O9JuGdLpdPS3drt9%2br0tzWZTKpWKPD4%2bXi6%2bV6s16Xa70mq18G1Lv%2bV8xq7X63oZ%2bJ1x%2bFsLYxxvIJ5%2bc3rnePUq9v9xVatX79WPPfP%2bpdk0ZDqdyvPrN3k5HiUKQ9lsM9mmsfi%2bL4vFQuIkkc1mI8fji/ieJ%2bVy6TMA5bLUEcdeW%2bJ6gRwOe0nTjeRZJv1eFzGWMhxPNEaO2OPRQPZPB3l5eZEsz2W320kUhRKGkURJKqNBV%2b7u7rBOWb5%2b/aoX13h4ePh08ffi%2bauUSyUp4eJvvN/f31/m8VnjnJ9LpQsIX2q1ugyHQ9lkuW5wvV7jEL64tiXL5VKCEEB4rtj2GtlpavDKFYK8uNFGqy1xFMvasiQIPLERQwHxQ9llGxmPR8qQME4l8B3N/Ha7BeCReL4r1tqWxXwG0AONEcWJdDttWduOLBdTMdpd8VwH%2b7PFwV4c18WYi1ierBZz6Q1G4jgexiyZTsaSpKm4Lvft6Jw1vmEsD0kdDfsfDDCMlgKQbDLJ8x02vRY/CHFoRyweBgCkYABBIG2r1eqFoucgBQAtPUyEb6MokOfjN7GWCwmiRJI4UmAHg77MFisA5Uu315cMACTIeBj6srLWCjI3zXXJhGG/K0vLQUwPgBlirZZiOwTBEnNiynSG%2bGBstgFY/SG%2bW8sKa45HQ/weyX6/LxKKmPP5HOM2QLBlCaAvDKCmTdOUp5ejPD09iQeKx6BvHAZ66Bibtx0XoASaMYIxm06kBEpdM8CAb8RJJoFnK/VDZHCDLFAyRrMhth/J81OOQ/UwFssBAFFmay%2bELFLdcAIZ9Hs9PRQzHEWRyiIMfLBgoTS%2bubmBPO7l9vZWL1L6HtS%2buyveKZ3b2zu5%2beMPucUzx/nNeX7xXMir8AAwYAADDEHfGJteKcqgDO7UruN6SmXHsXGQppogjeoc4MIAxCG9mIUMB%2bI9xEFsIE5DXa4dgGGD1h3Q3VJmRMj8fLkCaMgQDriC5LgXC1mbzxeXO9c3zTGyPpEJktWDlBxIbDWfCj1sPB6rXIs5M2TckQnmMh5lZ5oTsGWGb8cab4bnDuRVKZMBOMxwOJBkm0MCOQBYiY1D0wMsaIaGGFLT1x5QKf8mAQIZg7YBJECNuqAqAXTBgHa7JbOlpQfmAZndJNvJPkvFnC50LfqOj413uh0FbYHNz2Zz1bwHOZLWTaOt%2b%2btijkX9u7YmhMA/g8Eu1l1gHXpFGBWMagNwlTQYzKSSXWT2BMb/WHksJEAE8/3TSQIuPk5Ud/QDMiDPM2kZDVCwdCkpv5pgE/7ggubueqVSoeEkSQzwQnzbhCkGssthhvAbZpK6nE5n6jvPqBrUPUGgFw06hoTJBua5VcZsIKl8f8A7JBWzkiQ6V2WKg9VrVXX7EvbB5FAqZa0IpU%2bVhOPlU6W4SKCDjdOc0m1RBSxrpcE9oEu0aU4ptDyfTX87%2bHUZbDRbMLsYgPnq%2bgTgbGiUFbNZZHWqxkTHH4xM%2bfb6ClMMZAyaMlOUmomKQfpT/6QtWeRhbA7v6Q%2bGOj4em2DFSN8JMM35o%2b7j%2bfSupn019mv/ohI4M2AH13SVPsgcSwc3Co2SAazVBOta%2bx%2bBylJrtABgolWDANDdzTE2B3OkG1NCtYahPcU2TbRUsXcIwAx6QG84wrqpvH1/xbcR/CjGoSPZgEUp5o8ggVKprCZ3czHAB5Xkue7zQDTnh1PG2a8U/ULpP5ukLzV0aCMgme32koFqzIAP5H0wwIGOWQF4EDYR58UKH6jonYBwIZZBH8yh84egJr/jwVkFmugmWc6m5kiG5lwOu60eLokDAO7pnB0SQLfv9QfqATS%2bNcZoVix7lOeATRUSQkCoe5ZE6pzP%2b8MB4z31nei0vgXjJYAL9AmlUulT5i8AkAGDwUAilD4CoBJAM%2bIBCH44g2uShmxfO3DUTqerpapeR%2buLO1te9gW1RlNL6OHwrJRWA92kMEQYG0zQQaZNdIA9UJYmRJmRWSk2uGLdB%2btY9nroD%2bjglAudnS5vgqE0L97ZmRJkmiNdn1VhCanSWFliGcvCO%2bdRhv6pwrA9vz78RytsFK3w8fsbWt2jli52hRlqtIegef4ER0cZms7l%2b4/vyN5eM0tJHJ4PxabhylXQO0PFeH97l/0uQyOzkR%2bYvwWwbIfdIJbX4wEgjLQ7e//5t3qL9gLI%2bAZZDdAl7nc5zM2X/ngmr4ed/j9gYn68/5QtAE3Rl9Bb3n/%2bJTMAYIElb9%2bOWurYPP35/qbGmmIvbJC0vGOPZNgI1Y5yrVxLoF5vKBoVlASiT5cvKzqFcRR/ZmrClvnxsaKUP9OpuFd1Dn%2bn2XS6PTWl8i9mWUilcjEmA61zjWuVP1eTT6UV2ed%2bOL%2bF%2bY/Y/LkHaYF5us5pXV585p87lslzrOvr3yTwD8D3sn7nmHlxAAAAAElFTkSuQmCC' /%3e%3c/svg%3e" width="650" alt="Migrate Command List" data-srcset="/my-blog/assets/static/command-list-migrate.2f2d982.0c4a0b9556be6e44148867c3dee2ed0d.png 650w" data-sizes="(max-width: 650px) 100vw, 650px" data-src="/my-blog/assets/static/command-list-migrate.2f2d982.0c4a0b9556be6e44148867c3dee2ed0d.png"><noscript><img class="g-image g-image--lazy g-image--loaded" src="/my-blog/assets/static/command-list-migrate.2f2d982.0c4a0b9556be6e44148867c3dee2ed0d.png" width="650" alt="Migrate Command List"></noscript></p>
+<h2 id="create-migration"><a href="#create-migration" aria-hidden="true"><span class="icon icon-link"></span></a>Create Migration</h2>
+<p>As self-explained, to create a migration, run the following command in your terminal / command prompt:</p>
+<div class="gridsome-highlight" data-language="bash"><pre class="language-bash"><code class="language-bash">$ yii migrate/create your_migration_name</code></pre></div>
+<p>For example, to create a new <code class="language-text">users</code> table:</p>
+<div class="gridsome-highlight" data-language="bash"><pre class="language-bash"><code class="language-bash">$ yii migrate/create create_users_table</code></pre></div>
+<p>It will then asked for confirmation, type <code class="language-text">yes</code> and hit <code class="language-text">Enter</code> then a new migration file will be created. In your Yii project folder, you will found there is new folder <code class="language-text">migrations</code> and a file <code class="language-text">m&lt;XXXXXX_XXXXXX&gt;_create_users_table.php</code> has been created.</p>
+<blockquote>
+<p><code class="language-text">&lt;XXXXXX_XXXXXX&gt;</code> refers to the UTC datetime at which the migration being created.</p>
+</blockquote>
+<p>Open the migration file with your editor, you will find the following code:</p>
+<div class="gridsome-highlight" data-language="php"><pre class="language-php"><code class="language-php"><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
+
+<span class="token keyword">use</span> <span class="token package">yii<span class="token punctuation">\</span>db<span class="token punctuation">\</span>Migration</span><span class="token punctuation">;</span>
+
+<span class="token comment">/**
+ * Handles the creation of table `users`.
+ */</span>
+<span class="token keyword">class</span> <span class="token class-name">m200725_073858_create_users_table</span> <span class="token keyword">extends</span> <span class="token class-name">Migration</span>
+<span class="token punctuation">{</span>
+    <span class="token comment">/**
+     * @inheritdoc
+     */</span>
+    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function">up</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">createTable</span><span class="token punctuation">(</span><span class="token single-quoted-string string">'users'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>
+            <span class="token single-quoted-string string">'id'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">primaryKey</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">/**
+     * @inheritdoc
+     */</span>
+    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function">down</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">dropTable</span><span class="token punctuation">(</span><span class="token single-quoted-string string">'users'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></span></code></pre></div>
+<p>You can see there are two functions in the migration file.</p>
+<ul>
+<li>function <code class="language-text">up()</code> - The <code class="language-text">up()</code> function is the codes to be executed when we run the migration in the command line with the <code class="language-text">$ yii migrate</code> command.</li>
+<li>function <code class="language-text">down()</code> - The <code class="language-text">down()</code> function is the codes to be executed when we revert the migration with the command <code class="language-text">$ yii migrate/down</code>.</li>
+</ul>
+<p>For example if we do create table in <code class="language-text">up()</code> function we may implement drop table in <code class="language-text">down()</code> function, or if we do add column in <code class="language-text">up()</code> function then we may implement drop column in <code class="language-text">down()</code> function</p>
+<p>Now try to run this command then followed by <code class="language-text">yes</code>:</p>
+<div class="gridsome-highlight" data-language="bash"><pre class="language-bash"><code class="language-bash">$ yii migrate</code></pre></div>
+<p>Once the migration done successfully, go to your database you will find that a new table <code class="language-text">users</code> has been created with a column <code class="language-text">id</code>.</p>
+<h2 id="cheat-sheet"><a href="#cheat-sheet" aria-hidden="true"><span class="icon icon-link"></span></a>Cheat Sheet</h2>
+<blockquote>
+<p>All the code below are tested in <strong>Yii version 2.0.11</strong></p>
+</blockquote>
+<h3 id="create-table"><a href="#create-table" aria-hidden="true"><span class="icon icon-link"></span></a>Create table</h3>
+<h4 id="create-table-and-column"><a href="#create-table-and-column" aria-hidden="true"><span class="icon icon-link"></span></a>Create table and column</h4>
+<div class="gridsome-highlight" data-language="php"><pre class="language-php"><code class="language-php"><span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">createTable</span><span class="token punctuation">(</span><span class="token single-quoted-string string">'table_name'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>
+	<span class="token single-quoted-string string">'col_1'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">primaryKey</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+	<span class="token single-quoted-string string">'col_2'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">string</span><span class="token punctuation">(</span><span class="token number">64</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></div>
+<p>will equal to the below SQL query:</p>
+<div class="gridsome-highlight" data-language="sql"><pre class="language-sql"><code class="language-sql"><span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> <span class="token punctuation">`</span>table_name<span class="token punctuation">`</span> <span class="token punctuation">(</span>
+	<span class="token punctuation">`</span>col_1<span class="token punctuation">`</span> <span class="token keyword">INT</span><span class="token punctuation">(</span><span class="token number">11</span><span class="token punctuation">)</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span> <span class="token keyword">AUTO_INCREMENT</span><span class="token punctuation">,</span>
+	<span class="token punctuation">`</span>col_2<span class="token punctuation">`</span> <span class="token keyword">VARCHAR</span><span class="token punctuation">(</span><span class="token number">64</span><span class="token punctuation">)</span> <span class="token keyword">DEFAULT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+	<span class="token keyword">PRIMARY</span> <span class="token keyword">KEY</span> <span class="token punctuation">(</span><span class="token punctuation">`</span>id<span class="token punctuation">`</span><span class="token punctuation">)</span>
+<span class="token punctuation">)</span></code></pre></div>
+<h4 id="with-engine-and-charset"><a href="#with-engine-and-charset" aria-hidden="true"><span class="icon icon-link"></span></a>With ENGINE and CHARSET</h4>
+<div class="gridsome-highlight" data-language="php"><pre class="language-php"><code class="language-php"><span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">createTable</span><span class="token punctuation">(</span><span class="token single-quoted-string string">'table_name'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>
+	<span class="token single-quoted-string string">'col_1'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">primaryKey</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+<span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token single-quoted-string string">'engine = InnoDb, charset = utf8'</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></div>
+<h4 id="unsigned-default-value-not-null"><a href="#unsigned-default-value-not-null" aria-hidden="true"><span class="icon icon-link"></span></a>UNSIGNED, DEFAULT VALUE, NOT NULL</h4>
+<div class="gridsome-highlight" data-language="php"><pre class="language-php"><code class="language-php"><span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">createTable</span><span class="token punctuation">(</span><span class="token single-quoted-string string">'table_name'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>
+	<span class="token single-quoted-string string">'col_2'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">bigPrimaryKey</span><span class="token punctuation">(</span><span class="token number">64</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+	<span class="token comment">// `col_2` BIGINT(20) NOT NULL AUTO_INCREMENT</span>
+	<span class="token comment">// PRIMARY KEY (`col_2`)</span>
+
+	<span class="token single-quoted-string string">'col_3'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">integer</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">defaultValue</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">unsigned</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">notNull</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+	<span class="token comment">// `col_3` INT(4) UNSIGNED NOT NULL DEFAULT 10</span>
+<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></div>
+<h4 id="raw-sql"><a href="#raw-sql" aria-hidden="true"><span class="icon icon-link"></span></a>Raw SQL</h4>
+<div class="gridsome-highlight" data-language="php"><pre class="language-php"><code class="language-php"><span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">createTable</span><span class="token punctuation">(</span><span class="token single-quoted-string string">'table_name'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>
+	<span class="token single-quoted-string string">'col_1'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token single-quoted-string string">'INT(11) UNSIGNED NOT NULL AUTO_INCREMENT'</span><span class="token punctuation">,</span>
+	<span class="token single-quoted-string string">'col_2'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token single-quoted-string string">'VARCHAR(10)'</span><span class="token punctuation">,</span>
+	<span class="token single-quoted-string string">'PRIMARY KEY (`col_1`)'</span><span class="token punctuation">,</span>
+	<span class="token single-quoted-string string">'KEY `col_2` USING HASH (`col_2`)'</span><span class="token punctuation">,</span>
+<span class="token punctuation">]</span><span class="token punctuation">)</span></code></pre></div>
+<h3 id="data-type-list"><a href="#data-type-list" aria-hidden="true"><span class="icon icon-link"></span></a>Data Type List</h3>
+<blockquote>
+<p>This data type is compare to MySQL data type</p>
+</blockquote>
+<h4 id="numeric"><a href="#numeric" aria-hidden="true"><span class="icon icon-link"></span></a>Numeric</h4>
+<table>
+<thead>
+<tr>
+<th align="left">Yii</th>
+<th align="left">MySQL</th>
+<th align="left">Remarks</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">integer()</td>
+<td align="left">INT</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">tinyInteger()</td>
+<td align="left">TINYINT</td>
+<td align="left">Available since version 2.0.14</td>
+</tr>
+<tr>
+<td align="left">bigInteger()</td>
+<td align="left">BIGINT</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">smallInteger()</td>
+<td align="left">SMALLINT</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">decimal()</td>
+<td align="left">DECIMAL</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">float()</td>
+<td align="left">FLOAT</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">double()</td>
+<td align="left">DOUBLE</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">money()</td>
+<td align="left">DECIMAL(19, 4)</td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<h3 id="boolean"><a href="#boolean" aria-hidden="true"><span class="icon icon-link"></span></a>Boolean</h3>
+<table>
+<thead>
+<tr>
+<th align="left">Yii</th>
+<th align="left">MySQL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">boolean()</td>
+<td align="left">TINYINT(1)</td>
+</tr>
+</tbody>
+</table>
+<h4 id="string"><a href="#string" aria-hidden="true"><span class="icon icon-link"></span></a>String</h4>
+<table>
+<thead>
+<tr>
+<th align="left">Yii</th>
+<th align="left">MySQL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">char()</td>
+<td align="left">CHAR</td>
+</tr>
+<tr>
+<td align="left">string()</td>
+<td align="left">VARCHAR</td>
+</tr>
+<tr>
+<td align="left">text()</td>
+<td align="left">TEXT</td>
+</tr>
+<tr>
+<td align="left">binary()</td>
+<td align="left">BLOB</td>
+</tr>
+</tbody>
+</table>
+<h4 id="datetime"><a href="#datetime" aria-hidden="true"><span class="icon icon-link"></span></a>Datetime</h4>
+<table>
+<thead>
+<tr>
+<th align="left">Yii</th>
+<th align="left">MySQL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">date()</td>
+<td align="left">DATE</td>
+</tr>
+<tr>
+<td align="left">time()</td>
+<td align="left">TIME</td>
+</tr>
+<tr>
+<td align="left">datetime()</td>
+<td align="left">DATETIME</td>
+</tr>
+<tr>
+<td align="left">timestamp()</td>
+<td align="left">TIMESTAMP</td>
+</tr>
+</tbody>
+</table>
+<h4 id="json"><a href="#json" aria-hidden="true"><span class="icon icon-link"></span></a>JSON</h4>
+<table>
+<thead>
+<tr>
+<th align="left">Yii</th>
+<th align="left">MySQL</th>
+<th align="left">Remarks</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">json()</td>
+<td align="left">JSON</td>
+<td align="left">Available since version 2.0.14</td>
+</tr>
+</tbody>
+</table>
+<h3 id="drop-table"><a href="#drop-table" aria-hidden="true"><span class="icon icon-link"></span></a>Drop Table</h3>
+<div class="gridsome-highlight" data-language="php"><pre class="language-php"><code class="language-php"><span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">dropTable</span><span class="token punctuation">(</span><span class="token single-quoted-string string">'table_name'</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></div>
+<h3 id="rename-table"><a href="#rename-table" aria-hidden="true"><span class="icon icon-link"></span></a>Rename Table</h3>
+<div class="gridsome-highlight" data-language="php"><pre class="language-php"><code class="language-php"><span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">renameTable</span><span class="token punctuation">(</span><span class="token single-quoted-string string">'old_table_name'</span><span class="token punctuation">,</span> <span class="token single-quoted-string string">'new_table_name'</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></div>
+<h3 id="add-column"><a href="#add-column" aria-hidden="true"><span class="icon icon-link"></span></a>Add Column</h3>
+<div class="gridsome-highlight" data-language="php"><pre class="language-php"><code class="language-php"><span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">addColumn</span><span class="token punctuation">(</span><span class="token single-quoted-string string">'table_name'</span><span class="token punctuation">,</span> <span class="token single-quoted-string string">'col_name'</span><span class="token punctuation">,</span> <span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">integer</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></div>
+<h3 id="drop-column"><a href="#drop-column" aria-hidden="true"><span class="icon icon-link"></span></a>Drop Column</h3>
+<div class="gridsome-highlight" data-language="php"><pre class="language-php"><code class="language-php"><span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">dropColumn</span><span class="token punctuation">(</span><span class="token single-quoted-string string">'table_name'</span><span class="token punctuation">,</span> <span class="token single-quoted-string string">'col_name'</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></div>
+<h3 id="rename-column"><a href="#rename-column" aria-hidden="true"><span class="icon icon-link"></span></a>Rename Column</h3>
+<div class="gridsome-highlight" data-language="php"><pre class="language-php"><code class="language-php"><span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">renameColumn</span><span class="token punctuation">(</span><span class="token single-quoted-string string">'table_name'</span><span class="token punctuation">,</span> <span class="token single-quoted-string string">'old_column_name'</span><span class="token punctuation">,</span> <span class="token single-quoted-string string">'new_column_name'</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></div>
+<h3 id="alter-column"><a href="#alter-column" aria-hidden="true"><span class="icon icon-link"></span></a>Alter Column</h3>
+<div class="gridsome-highlight" data-language="php"><pre class="language-php"><code class="language-php"><span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">alterColumn</span><span class="token punctuation">(</span><span class="token single-quoted-string string">'table_name'</span><span class="token punctuation">,</span> <span class="token single-quoted-string string">'column_name'</span><span class="token punctuation">,</span> <span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">integer</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></div>
+<h3 id="add-primary-key"><a href="#add-primary-key" aria-hidden="true"><span class="icon icon-link"></span></a>Add Primary Key</h3>
+<div class="gridsome-highlight" data-language="php"><pre class="language-php"><code class="language-php"><span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">addPrimaryKey</span><span class="token punctuation">(</span><span class="token single-quoted-string string">'primary_key_name'</span><span class="token punctuation">,</span> <span class="token single-quoted-string string">'table_name'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token single-quoted-string string">'col_1'</span><span class="token punctuation">,</span> <span class="token single-quoted-string string">'col_2'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></div>
+<h3 id="drop-primary-key"><a href="#drop-primary-key" aria-hidden="true"><span class="icon icon-link"></span></a>Drop Primary Key</h3>
+<div class="gridsome-highlight" data-language="php"><pre class="language-php"><code class="language-php"><span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">dropPrimary</span><span class="token punctuation">(</span><span class="token single-quoted-string string">'primary_key_name'</span><span class="token punctuation">,</span> <span class="token single-quoted-string string">'table_name'</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></div>
+<h3 id="create-index"><a href="#create-index" aria-hidden="true"><span class="icon icon-link"></span></a>Create Index</h3>
+<div class="gridsome-highlight" data-language="php"><pre class="language-php"><code class="language-php"><span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">createIndex</span><span class="token punctuation">(</span><span class="token single-quoted-string string">'index_key_name'</span><span class="token punctuation">,</span> <span class="token single-quoted-string string">'table_name'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token single-quoted-string string">'col_1'</span><span class="token punctuation">,</span> <span class="token single-quoted-string string">'col_2'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></div>
+<h3 id="drop-index"><a href="#drop-index" aria-hidden="true"><span class="icon icon-link"></span></a>Drop Index</h3>
+<div class="gridsome-highlight" data-language="php"><pre class="language-php"><code class="language-php"><span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">dropIndex</span><span class="token punctuation">(</span><span class="token single-quoted-string string">'index_key_name'</span><span class="token punctuation">,</span> <span class="token single-quoted-string string">'table_name'</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></div>
+<h3 id="add-foreign-key"><a href="#add-foreign-key" aria-hidden="true"><span class="icon icon-link"></span></a>Add Foreign Key</h3>
+<div class="gridsome-highlight" data-language="php"><pre class="language-php"><code class="language-php"><span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">addForeignKey</span><span class="token punctuation">(</span><span class="token single-quoted-string string">'foreign_key_name'</span><span class="token punctuation">,</span> <span class="token single-quoted-string string">'table_name'</span><span class="token punctuation">,</span> <span class="token single-quoted-string string">'col_name'</span><span class="token punctuation">,</span> <span class="token single-quoted-string string">'ref_table_name'</span><span class="token punctuation">,</span> <span class="token single-quoted-string string">'ref_col_name'</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></div>
+<h3 id="drop-foreign-key"><a href="#drop-foreign-key" aria-hidden="true"><span class="icon icon-link"></span></a>Drop Foreign Key</h3>
+<div class="gridsome-highlight" data-language="php"><pre class="language-php"><code class="language-php"><span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">dropForeignKey</span><span class="token punctuation">(</span><span class="token single-quoted-string string">'foreign_key_name'</span><span class="token punctuation">,</span> <span class="token single-quoted-string string">'table_name'</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></div>
+<h3 id="insert-records"><a href="#insert-records" aria-hidden="true"><span class="icon icon-link"></span></a>Insert Records</h3>
+<h4 id="insert-single-record"><a href="#insert-single-record" aria-hidden="true"><span class="icon icon-link"></span></a>Insert single record</h4>
+<div class="gridsome-highlight" data-language="php"><pre class="language-php"><code class="language-php"><span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">insert</span><span class="token punctuation">(</span><span class="token single-quoted-string string">'table_name'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>
+	<span class="token single-quoted-string string">'col_1'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token single-quoted-string string">'value 1'</span><span class="token punctuation">,</span>
+	<span class="token single-quoted-string string">'col_2'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token single-quoted-string string">'value 2'</span><span class="token punctuation">,</span>
+	<span class="token single-quoted-string string">'col_3'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token single-quoted-string string">'value 3'</span><span class="token punctuation">,</span>
+<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></div>
+<h4 id="batch-insert"><a href="#batch-insert" aria-hidden="true"><span class="icon icon-link"></span></a>Batch insert</h4>
+<div class="gridsome-highlight" data-language="php"><pre class="language-php"><code class="language-php"><span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">batchInsert</span><span class="token punctuation">(</span><span class="token single-quoted-string string">'table_name'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token single-quoted-string string">'col_1'</span><span class="token punctuation">,</span> <span class="token single-quoted-string string">'col_2'</span><span class="token punctuation">,</span> <span class="token single-quoted-string string">'col_3'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>
+	<span class="token punctuation">[</span><span class="token single-quoted-string string">'record_1_value_1'</span><span class="token punctuation">,</span> <span class="token single-quoted-string string">'record_1_value_2'</span><span class="token punctuation">,</span> <span class="token single-quoted-string string">'record_1_value_3'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+	<span class="token punctuation">[</span><span class="token single-quoted-string string">'record_2_value_1'</span><span class="token punctuation">,</span> <span class="token single-quoted-string string">'record_2_value_2'</span><span class="token punctuation">,</span> <span class="token single-quoted-string string">'record_2_value_3'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+	<span class="token punctuation">[</span><span class="token single-quoted-string string">'record_3_value_1'</span><span class="token punctuation">,</span> <span class="token single-quoted-string string">'record_3_value_2'</span><span class="token punctuation">,</span> <span class="token single-quoted-string string">'record_3_value_3'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></div>
+<h3 id="raw-sql-1"><a href="#raw-sql-1" aria-hidden="true"><span class="icon icon-link"></span></a>Raw SQL</h3>
+<div class="gridsome-highlight" data-language="php"><pre class="language-php"><code class="language-php"><span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">execute</span><span class="token punctuation">(</span><span class="token single-quoted-string string">'CREATE TABLE ...'</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></div>
+<h3 id="change-database"><a href="#change-database" aria-hidden="true"><span class="icon icon-link"></span></a>Change Database</h3>
+<p>In <code class="language-text">config</code> folder, create new database connection <code class="language-text">db2_name.php</code>:</p>
+<div class="gridsome-highlight" data-language="php"><pre class="language-php"><code class="language-php"><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
+
+<span class="token keyword">return</span> <span class="token punctuation">[</span>
+    <span class="token single-quoted-string string">'class'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token single-quoted-string string">'yii\db\Connection'</span><span class="token punctuation">,</span>
+    <span class="token single-quoted-string string">'dsn'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token single-quoted-string string">'mysql:host=localhost;dbname=db2_name'</span><span class="token punctuation">,</span>
+    <span class="token single-quoted-string string">'username'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token single-quoted-string string">'root'</span><span class="token punctuation">,</span>
+    <span class="token single-quoted-string string">'password'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token single-quoted-string string">''</span><span class="token punctuation">,</span>
+    <span class="token single-quoted-string string">'charset'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token single-quoted-string string">'utf8'</span><span class="token punctuation">,</span>
+<span class="token punctuation">]</span><span class="token punctuation">;</span></span></code></pre></div>
+<p>Then in <code class="language-text">\config\web.php</code>, add new database component:</p>
+<p><strong><code class="language-text">\config\web.php</code></strong></p>
+<div class="gridsome-highlight has-highlighted-lines" data-language="php"><pre class="language-php"><code class="language-php"><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
+
+<span class="token variable">$params</span> <span class="token operator">=</span> <span class="token keyword">require</span> <span class="token constant">__DIR__</span> <span class="token punctuation">.</span> <span class="token single-quoted-string string">'/params.php'</span><span class="token punctuation">;</span>
+<span class="token variable">$db</span> <span class="token operator">=</span> <span class="token keyword">require</span> <span class="token constant">__DIR__</span> <span class="token punctuation">.</span> <span class="token single-quoted-string string">'/db.php'</span><span class="token punctuation">;</span>
+<span class="gridsome-highlight-code-line"><span class="token variable">$db2</span> <span class="token operator">=</span> <span class="token keyword">require</span> <span class="token constant">__DIR__</span> <span class="token punctuation">.</span> <span class="token single-quoted-string string">'/db2_name.php'</span><span class="token punctuation">;</span></span>
+<span class="token variable">$config</span> <span class="token operator">=</span> <span class="token punctuation">[</span>
+	<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">,</span>
+	<span class="token single-quoted-string string">'components'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">[</span>
+		<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">,</span>
+		<span class="token single-quoted-string string">'db'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token variable">$db</span><span class="token punctuation">,</span>
+<span class="gridsome-highlight-code-line">		<span class="token single-quoted-string string">'db2'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token variable">$db2</span><span class="token punctuation">,</span></span>	<span class="token punctuation">]</span>
+<span class="token punctuation">]</span></span></code></pre></div>
+<p>In your migration file:</p>
+<div class="gridsome-highlight has-highlighted-lines" data-language="php"><pre class="language-php"><code class="language-php"><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
+
+<span class="token keyword">use</span> <span class="token package">yii<span class="token punctuation">\</span>db<span class="token punctuation">\</span>Migration</span><span class="token punctuation">;</span>
+
+<span class="token comment">/**
+ * Handles the creation of table `users`.
+ */</span>
+<span class="token keyword">class</span> <span class="token class-name">m200725_073858_create_users_table</span> <span class="token keyword">extends</span> <span class="token class-name">Migration</span>
+<span class="token punctuation">{</span>
+<span class="gridsome-highlight-code-line">	<span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function">init</span><span class="token punctuation">(</span><span class="token punctuation">)</span></span><span class="gridsome-highlight-code-line">	<span class="token punctuation">{</span></span><span class="gridsome-highlight-code-line">		<span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token property">db</span> <span class="token operator">=</span> <span class="token single-quoted-string string">'db2'</span><span class="token punctuation">;</span></span><span class="gridsome-highlight-code-line">		<span class="token keyword">parent</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">init</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></span><span class="gridsome-highlight-code-line">	<span class="token punctuation">}</span></span>
+    <span class="token comment">/**
+     * @inheritdoc
+     */</span>
+    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function">up</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">createTable</span><span class="token punctuation">(</span><span class="token single-quoted-string string">'users'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>
+            <span class="token single-quoted-string string">'id'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">primaryKey</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">/**
+     * @inheritdoc
+     */</span>
+    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function">down</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">dropTable</span><span class="token punctuation">(</span><span class="token single-quoted-string string">'users'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></span></code></pre></div>
+<h2 id="credits"><a href="#credits" aria-hidden="true"><span class="icon icon-link"></span></a>Credits</h2>
+<blockquote>
+<p>Basically I'm just the transporter of the <strong>Yii2</strong> documentation. The full documentation can be found <a href="https://www.yiiframework.com/doc/guide/2.0/en/db-migrations" target="_blank" rel="nofollow noopener noreferrer">here</a>.</p>
+</blockquote>
+</main><footer class="mt-12"><div class="row"><div class="col-12 col-md-7 col"><div class="v-card v-sheet theme--dark"><div tabindex="-1" class="v-list-item theme--dark"><div class="v-avatar v-list-item__avatar" style="height:64px;min-width:64px;width:64px;"><img src="/my-blog/assets/img/profile-picture.e0c035f0.jpg" alt="profile-picture"></div><div class="v-list-item__content"><div class="v-list-item__title">
+										Author: Nicholas Lee
+									</div><div class="v-list-item__subtitle">
+										Published on: July 25, 2020 12:00pm
+									</div><div class="v-list-item__subtitle">
+										Updated on: July 25, 2020 12:00pm
+									</div></div></div></div></div></div></footer><br><div id="disqus_thread" identifier="PHP Yii2 - Database Migration" style="min-height:200px;"></div></article></div></div></main></div></div>
+    <script src="/my-blog/assets/js/app.14884cd0.js" defer></script><script src="/my-blog/assets/js/page--src-templates-blog-post-vue.311578ad.js" defer></script>
+  </body>
+</html>
