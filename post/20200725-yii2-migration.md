@@ -64,8 +64,6 @@ It will then asked for confirmation, type `yes` and hit `Enter` then a new migra
 Open the migration file with your editor, you will find the following code:
 
 ```php
-<?php
-
 use yii\db\Migration;
 
 /**
@@ -318,8 +316,6 @@ $this->execute('CREATE TABLE ...');
 In `config` folder, create new database connection `db2_name.php`:
 
 ```php
-<?php
-
 return [
     'class' => 'yii\db\Connection',
     'dsn' => 'mysql:host=localhost;dbname=db2_name',
@@ -333,9 +329,7 @@ Then in `\config\web.php`, add new database component:
 
 **`\config\web.php`**
 
-```php{5, 12}
-<?php
-
+```php{3, 10}
 $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
 $db2 = require __DIR__ . '/db2_name.php';
@@ -352,9 +346,7 @@ $config = [
 
 In your migration file:
 
-```php{10-14}
-<?php
-
+```php{8-12}
 use yii\db\Migration;
 
 /**
